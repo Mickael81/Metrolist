@@ -211,7 +211,7 @@ fun Queue(
 
                 TextButton(onClick = {
                     coroutineScope.launch {
-                        state.expand()
+                        state.expandSoft()
                     }
                 }) {
                     Row(
