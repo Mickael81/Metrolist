@@ -114,6 +114,8 @@ fun BottomSheet(
         }
 
         if (!state.isExpanded && (onDismiss == null || !state.isDismissed)) {
+            val coroutineScope = rememberCoroutineScope()
+
             Box(
                 modifier =
                 Modifier
@@ -122,7 +124,11 @@ fun BottomSheet(
                     }.clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
-                        onClick = state::expandSoft,
+                        onClick = {
+                            coroutineScope.launch {
+                                state.expandSoft()
+                            }
+                        },
                     ).fillMaxWidth()
                     .height(state.collapsedBound),
                 content = collapsedContent,
