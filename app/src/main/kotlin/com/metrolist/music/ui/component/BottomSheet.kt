@@ -189,7 +189,7 @@ class BottomSheetState(
         collapse(spring(stiffness = Spring.StiffnessMediumLow))
     }
 
-    fun expandSoft() {
+    suspend fun expandSoft() {
         expand(spring(stiffness = Spring.StiffnessMediumLow))
     }
 
