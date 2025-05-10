@@ -185,8 +185,6 @@ fun Queue(
         }
     }
 
-
-
     BottomSheet(
         state = state,
         brushBackgroundColor =
@@ -209,7 +207,13 @@ fun Queue(
                             .only(WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal),
                     ),
             ) {
-                TextButton(onClick = { state.expandSoft() }) {
+                val coroutineScope = rememberCoroutineScope()
+
+                TextButton(onClick = {
+                    coroutineScope.launch {
+                        state.expand()
+                    }
+                }) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
